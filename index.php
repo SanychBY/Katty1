@@ -1,7 +1,9 @@
 <?php
 require_once 'core/System.php';
 $SYSTEM = new \core\System();
+require_once "vendor/autoload.php";
 $SYSTEM->autoloader();
+
 if(isset($_GET['controller']))
 {
     $controller = $_GET['controller'];
@@ -13,6 +15,8 @@ if(isset($_GET['controller']))
         $obj->render();
     }
 }
-else{
-    echo '404';
+elseif (empty($_GET['controller'])){
+    $class = '\controllers\MainController';
+    $obj = new $class();
+    $obj->render();
 }

@@ -8,5 +8,5 @@ class EditText extends Element
 {
     public $type = 'input';
     public $text;
-    public $onClick;
+    public $placeholder;
 }

@@ -6,15 +6,17 @@
  * Time: 14:01
  */
 
-namespace themes\NiceKatty\tools;
+namespace themes\MaterialKatty\tools;
 
 
 use core\tools\Button;
 
 class MKButton extends Button
 {
-    public $attributes = [
-        'class' => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'
-    ];
-    public $viewElement = 'themes/toolsView/Button';
+    public function __construct($text = '')
+    {
+        parent::__construct($text);
+        $this->viewElement = 'themes/toolsView/Button';
+        $this->attributes['class'] = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent';
+    }
 }

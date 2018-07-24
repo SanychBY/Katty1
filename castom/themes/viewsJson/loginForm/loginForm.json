@@ -1,0 +1,55 @@
+{"elements":
+  [
+    {
+      "type":"input",
+      "text":null,
+      "placeholder":null,
+      "name":"core\\tools\\EditText",
+      "attributes":
+      {
+        "class":"strEdit",
+        "name":"nick"
+      },
+      "viewElement":null,
+      "id":null
+    },
+    {
+      "type":"input",
+      "text":null,
+      "placeholder":"text",
+      "name":"themes\\MaterialKatty\\tools\\MKEditText",
+      "attributes":
+      {
+        "class":"mdl-textfield mdl-js-textfield is-upgraded"
+      },
+      "viewElement":null,
+      "id":null
+    },
+    {
+      "type":null,
+      "text":"Click",
+      "name":"core\\tools\\Button",
+      "attributes":[],
+      "viewElement":null,
+      "id":null
+    },
+    {
+      "type":null,
+      "text":"Click 3",
+      "name":"themes\\MaterialKatty\\tools\\MKButton",
+      "attributes":
+      {
+        "class":"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+      },
+      "viewElement":"themes\/toolsView\/Button","id":null
+    }
+  ],
+  "submitButton":null,
+  "name":"core\\tools\\Form",
+  "attributes":
+  {
+    "data-form_ajax":"hello"
+  },
+  "viewElement":null,
+  "id":""
+}

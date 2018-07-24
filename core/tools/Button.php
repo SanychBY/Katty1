@@ -8,9 +8,9 @@ class Button extends Element
 {
     public $type;
     public $text;
-    public $onClick;
     public function __construct($text = '')
     {
+        parent::__construct();
         $this->text = $text;
     }
 }

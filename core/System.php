@@ -50,4 +50,33 @@ class System
             }
         }
     }
+
+    public static function array_trim($arr, $save_key = false){
+        foreach ($arr as $key => $value){
+            if(empty($value)){
+                if($save_key){
+                    unset($arr[$key]);
+                }else{
+                    array_splice($arr,$key,1);
+                }
+            }
+        }
+        return $arr;
+    }
+
+    public static function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (is_dir($dir."/".$object))
+                        System::rrmdir($dir."/".$object);
+                    else
+                        unlink($dir."/".$object);
+                }
+            }
+            rmdir($dir);
+        }
+    }
+
 }
