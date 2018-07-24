@@ -29,7 +29,7 @@ class Element implements \JsonSerializable
     public function __construct()
     {
         $this->name = get_class($this);
-        $this->reflectionObject = new ReflectionObject($this);
+
         $this->loadElementJson();
     }
 
@@ -122,29 +122,31 @@ class Element implements \JsonSerializable
         }
     }
 
-    protected function trace_arr_for_load_json($arr){
-        foreach ($arr as &$el){
-            if (is_array($el))
-                $this->trace_arr_for_load_json($el);
-            elseif(is_object($el) && class_exists($el->name)){
-                $nameClass = $el->name;
-                $this->objectToObject($el, new $nameClass());
+    protected function trace_arr_for_load_json(&$arr, &$_class){
+        foreach ($arr as $key => &$el){
+            if (is_array($el)) {
+                $this->trace_arr_for_load_json($el, $_class);
+            }
+            elseif(is_object($el)){
+                $obv = get_object_vars($el);
+                $el = new $el->name();
+                $this->objectToObject($obv, $el);
             }
         }
     }
-    protected function objectToObject($objValues, $_class)
+    protected function objectToObject($objValues, &$_class)
     {
-        foreach($objValues AS $key=>$value)
+        foreach($objValues AS $key=> &$value)
         {
             if(is_object($value) && class_exists($value->name)){
-                $nameClass = $value->name;
-                $this->objectToObject($value, new $nameClass);
+                $arr = get_object_vars($value);
+                $value = new $value->name();
+                $this->objectToObject($arr, $value);
+            }elseif(is_array($value)){
+                $this->trace_arr_for_load_json($value, $_class);
             }
-            if(is_array($value)){
-                $this->trace_arr_for_load_json($value);
-            }
-            if($this->checkPropertyAccess($key)) {
-                $this->$key = $value;
+            if($this->checkPropertyAccess($_class, $key)) {
+                $_class->$key = $value;
             }else{
                 $setter = 'set'.ucfirst($key);
                 if(method_exists($_class,$setter)){
@@ -163,32 +165,12 @@ class Element implements \JsonSerializable
         }
         if(file_exists($link) && $json = file_get_contents($link)){
             $objValues = get_object_vars(json_decode($json)); // return array of object values
-            foreach($objValues AS $key=>$value)
-            {
-                if(is_object($value) && class_exists($value->name)){
-                    $nameClass = $value->name;
-                    $this->objectToObject($value, new $nameClass);
-                }
-                else{
-                    echo $key.'<br>';
-
-                }
-                if(is_array($value)){
-                    $this->trace_arr_for_load_json($value);
-                }
-                if($this->checkPropertyAccess($key)) {
-                    $this->$key = $value;
-                }else{
-                    $setter = 'set'.ucfirst($key);
-                    if($this->reflectionObject->hasMethod($setter)){
-                        $this->$setter($value);
-                    }
-                }
-            }
+            $this->objectToObject($objValues, $this);
         }
     }
-    private function checkPropertyAccess($prop){
-        $testClassProperties = $this->reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC);
+    private function checkPropertyAccess($obj,$prop){
+        $reflectionObject = new ReflectionObject($obj);
+        $testClassProperties = $reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC);
         foreach ($testClassProperties as $key => $property){
             if(strcmp($property->name, $prop) == 0){
                 unset($testClassProperties[$key]);

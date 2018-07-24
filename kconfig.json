@@ -3,5 +3,6 @@
     "name": "Material Katty",
     "path": "MaterialKatty"
   },
-  "root_dir": "E:\\openserver\\OSPanel\\domains\\Katty1"
+  "root_dir": "E:\\openserver\\OSPanel\\domains\\Katty1",
+  "lang": "en"
 }
