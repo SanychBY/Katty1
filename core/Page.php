@@ -3,6 +3,7 @@ namespace core;
 
 use function core\libs\get_js;
 use function core\libs\get_styles;
+use core\libs\Js;
 
 class Page
 {
@@ -11,12 +12,13 @@ class Page
     public $styles = '';
     public $scripts = '';
     public $footer = '';
-    public $header = '';
+    public $header = [];
     public $content = [];
     public $uri = '';
 
     public function render(){
-        $this->scripts = get_js().$this->scripts;
+        $js = new Js();
+        $this->scripts = $js->get_js().$this->scripts;
         $this->styles = get_styles().$this->styles;
         $class_name = explode('\\', get_class($this));
         if(count($class_name) > 1){
@@ -38,5 +40,9 @@ class Page
             else
                 $el->render();
         }
+    }
+
+    public function get_header(){
+        $this->trace_arr($this->header);
     }
 }

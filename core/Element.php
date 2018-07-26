@@ -6,6 +6,13 @@ use models\Event;
 use ReflectionObject;
 use ReflectionProperty;
 
+/**
+ * Class Element
+ *
+ *
+ *
+ * @package core
+ */
 class Element implements \JsonSerializable
 {
     protected $cache = false;
@@ -29,8 +36,27 @@ class Element implements \JsonSerializable
     public function __construct()
     {
         $this->name = get_class($this);
-
+        $this->attributes['kclass'] = $this->name;
         $this->loadElementJson();
+    }
+
+    public function attr($name, $val = null){
+        if($val == null){
+            return $this->attributes[$name];
+        }else{
+            $this->attributes[$name] = $val;
+            return $this->attributes[$name];
+        }
+    }
+
+    public function attrNameByVal($val){
+        $res = [];
+        foreach ($this->attributes as $key => $vala){
+            if($val == $vala){
+                $res[] = $key;
+            }
+        }
+        return $res;
     }
 
     /**

@@ -8,6 +8,17 @@ use Exception;
 class System
 {
     public static $SETTINGS = null;
+    public static $GENERAL_JS = [];
+
+    public static function ADD_GENERAL_JS($l){
+        foreach (System::$GENERAL_JS as $GENERAL_J)
+        {
+            if($GENERAL_J == $l){
+                return;
+            }
+        }
+        System::$GENERAL_JS[] = $l;
+    }
 
     public static function load_settings(){
         if(System::$SETTINGS = file_get_contents('kconfig.json')){

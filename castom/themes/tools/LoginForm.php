@@ -1,6 +1,6 @@
 <?php
 
-namespace castome\themes\tools;
+namespace castom\themes\tools;
 use core\tools\Form;
 
 class LoginForm extends Form
