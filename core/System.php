@@ -45,7 +45,7 @@ class System
 
     public static function autoloader(){
         foreach (System::$roots_autload as $roots){
-            System::recfileloader($_SERVER['DOCUMENT_ROOT'].'/'.$roots);
+            System::recfileloader($roots);
         }
     }
 

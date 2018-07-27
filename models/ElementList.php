@@ -1,9 +1,8 @@
 <?php
 
 namespace models;
-include_once $_SERVER['DOCUMENT_ROOT'].'/models/model.php';
+include_once 'model.php';
 
-use core\Element;
 
 class ElementList implements \JsonSerializable
 {
