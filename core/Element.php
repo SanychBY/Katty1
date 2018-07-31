@@ -1,7 +1,7 @@
 <?php
 
 namespace core;
-include_once $_SERVER['DOCUMENT_ROOT'].'/models/model.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/models/Model.php';
 use models\Event;
 use ReflectionObject;
 use ReflectionProperty;
