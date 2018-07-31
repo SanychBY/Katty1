@@ -45,21 +45,21 @@ class System
 
     public static function autoloader(){
         foreach (System::$roots_autload as $roots){
-            System::recfileloader($roots);
+            System::recfileloader($_SERVER['DOCUMENT_ROOT'] . '/' . $roots);
         }
     }
 
     private static function recfileloader($root){
         echo $_SERVER['DOCUMENT_ROOT'] . '/'.$root.'<br>';
         if(file_exists($root)) {
-            $scn = scandir($_SERVER['DOCUMENT_ROOT'] . '/' . $root, SCANDIR_SORT_NONE);
+            $scn = scandir($root, SCANDIR_SORT_NONE);
             foreach ($scn as $path) {
                 if ($path == '.' || $path == '..')
                     continue;
-                if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path)) {
-                    System::recfileloader($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path);
+                if (is_dir($root . '/' . $path)) {
+                    System::recfileloader($root . '/' . $path);
                 } elseif (mb_strlen($path) >= 4 && mb_strimwidth($path, mb_strlen($path) - 4, 4) == '.php') {
-                    require_once($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path);
+                    require_once($root . '/' . $path);
                 }
             }
         }
