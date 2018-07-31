@@ -42,8 +42,19 @@ class System
         'controllers',
         'castom'
     ];
+    public static $first_autload = [
+        'core/Element',
+        'models/Model',
+        'controller/Controller'
+    ];
 
     public static function autoloader(){
+        foreach (System::$first_autload as $item) {
+            $file = $_SERVER['DOCUMENT_ROOT'] . '/'.$item.'.php';
+            if(file_exists($file)) {
+                include_once $file;
+            }
+        }
         foreach (System::$roots_autload as $roots){
             System::recfileloader($_SERVER['DOCUMENT_ROOT'] . '/' . $roots);
         }
