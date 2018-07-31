@@ -1,7 +1,7 @@
 <?php
 
 namespace models;
-include_once 'model.php';
+include_once 'Model.php';
 
 
 class ElementList implements \JsonSerializable
