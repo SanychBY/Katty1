@@ -45,13 +45,14 @@ class System
     public static $first_autload = [
         'core/Element',
         'models/Model',
-        'controller/Controller'
+        'controllers/Controller'
     ];
 
     public static function autoloader(){
         foreach (System::$first_autload as $item) {
             $file = $_SERVER['DOCUMENT_ROOT'] . '/'.$item.'.php';
             if(file_exists($file)) {
+                echo $file.'<br>';
                 include_once $file;
             }
         }
@@ -61,7 +62,6 @@ class System
     }
 
     private static function recfileloader($root){
-        echo $_SERVER['DOCUMENT_ROOT'] . '/'.$root.'<br>';
         if(file_exists($root)) {
             $scn = scandir($root, SCANDIR_SORT_NONE);
             foreach ($scn as $path) {
