@@ -1,4 +1,5 @@
 <?php
+echo __DIR__;
 require_once 'core/System.php';
 $SYSTEM = new \core\System();
 require_once "vendor/autoload.php";
