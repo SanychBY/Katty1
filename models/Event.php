@@ -4,7 +4,7 @@ namespace models;
 
 use controllers\Controller;
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/models/model.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/models/Model.php';
 class Event extends Model
 {
     private $name;
