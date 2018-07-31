@@ -50,7 +50,7 @@ class System
     }
 
     private static function recfileloader($root){
-        $scn = scandir($root,SCANDIR_SORT_NONE);
+        $scn = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$root,SCANDIR_SORT_NONE);
         foreach ($scn as $path) {
             if($path == '.' || $path == '..')
                 continue;
