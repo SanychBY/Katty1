@@ -164,7 +164,7 @@ class Element implements \JsonSerializable
     {
         foreach($objValues AS $key=> &$value)
         {
-            if(is_object($value) && class_exists($value->name)){
+            if(is_object($value) && isset($value->name) && class_exists($value->name)){
                 $arr = get_object_vars($value);
                 $value = new $value->name();
                 $this->objectToObject($arr, $value);
