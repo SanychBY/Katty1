@@ -41,7 +41,7 @@ class MainController extends Controller
         $header = new MKHeader();
         $header->setLogo(new MKLogo());
         $mainPage->header[] = $header;
-        $header->attr('class', 'mdl-layout__header mdl-layout__header--waterfall');
+        $header->attr('class', 'navbar navbar-default');
         $mainPage->render();
     }
 }
