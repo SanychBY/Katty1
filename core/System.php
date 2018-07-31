@@ -50,14 +50,16 @@ class System
     }
 
     private static function recfileloader($root){
-        $scn = scandir($_SERVER['DOCUMENT_ROOT'].'/'.$root,SCANDIR_SORT_NONE);
-        foreach ($scn as $path) {
-            if($path == '.' || $path == '..')
-                continue;
-            if(is_dir($root.'/'.$path)){
-                System::recfileloader($root.'/'.$path);
-            }elseif(mb_strlen($path) >= 4 && mb_strimwidth($path, mb_strlen($path) - 4, 4) == '.php'){
-                require_once($root.'/'.$path);
+        if(file_exists($root)) {
+            $scn = scandir($_SERVER['DOCUMENT_ROOT'] . '/' . $root, SCANDIR_SORT_NONE);
+            foreach ($scn as $path) {
+                if ($path == '.' || $path == '..')
+                    continue;
+                if (is_dir($root . '/' . $path)) {
+                    System::recfileloader($root . '/' . $path);
+                } elseif (mb_strlen($path) >= 4 && mb_strimwidth($path, mb_strlen($path) - 4, 4) == '.php') {
+                    require_once($root . '/' . $path);
+                }
             }
         }
     }
