@@ -56,10 +56,10 @@ class System
             foreach ($scn as $path) {
                 if ($path == '.' || $path == '..')
                     continue;
-                if (is_dir($root . '/' . $path)) {
-                    System::recfileloader($root . '/' . $path);
+                if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path)) {
+                    System::recfileloader($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path);
                 } elseif (mb_strlen($path) >= 4 && mb_strimwidth($path, mb_strlen($path) - 4, 4) == '.php') {
-                    require_once($root . '/' . $path);
+                    require_once($_SERVER['DOCUMENT_ROOT'] . '/'.$root . '/' . $path);
                 }
             }
         }
