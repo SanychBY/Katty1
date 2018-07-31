@@ -184,7 +184,8 @@ class Element implements \JsonSerializable
     public function loadElementJson($link = null){
         if($link == null){
             $path = str_replace('\\', '/', get_class($this));
-            $file = end(explode('\\',get_class($this)));
+            $tmp = explode('\\',get_class($this));
+            $file = end($tmp);
             $link = $_SERVER['DOCUMENT_ROOT'].'/themes/'.System::$SETTINGS->theme->path.'/viewsJson/'.$path.'/'.$file.'.json';
         }else{
             $link = $_SERVER['DOCUMENT_ROOT'].'/'.$link.'.json';

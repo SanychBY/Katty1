@@ -52,7 +52,6 @@ class System
         foreach (System::$first_autload as $item) {
             $file = $_SERVER['DOCUMENT_ROOT'] . '/'.$item.'.php';
             if(file_exists($file)) {
-                echo $file.'<br>';
                 include_once $file;
             }
         }
