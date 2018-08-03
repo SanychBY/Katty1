@@ -1,5 +1,6 @@
 {
   "controllers": {
-    "castom/Form": "castom\\controllers\\FormController"
+    "castom/Form": "castom\\controllers\\FormController",
+    "Image": "controllers\\ImageController"
   }
 }
