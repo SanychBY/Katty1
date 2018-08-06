@@ -4,5 +4,12 @@
     "path": "MaterialKatty"
   },
   "root_dir": "E:\\openserver\\OSPanel\\domains\\Katty1",
-  "lang": "en"
+  "lang": "en",
+  "db":{
+    "host":"localhost",
+    "user":"root",
+    "password":"",
+    "name":"katty1",
+    "driver": "pdo_mysql"
+  }
 }

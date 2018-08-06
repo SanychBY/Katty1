@@ -2,6 +2,7 @@
 
 namespace core;
 
+use Doctrine\DBAL\DBALException;
 use Exception;
 
 
@@ -9,7 +10,13 @@ class System
 {
     public static $SETTINGS = null;
     public static $GENERAL_JS = [];
+    public static $DB = null;
 
+    public static function START(){
+        self::load_settings();
+        self::autoloader();
+        self::connect_to_db();
+    }
     public static function ADD_GENERAL_JS($l){
         foreach (System::$GENERAL_JS as $GENERAL_J)
         {
@@ -102,5 +109,19 @@ class System
             rmdir($dir);
         }
     }
+    public static function connect_to_db(){
+        $config = new \Doctrine\DBAL\Configuration();
+        $connectionParams = array(
+            'dbname' => System::$SETTINGS->db->name,
+            'user' => System::$SETTINGS->db->user,
+            'password' => System::$SETTINGS->db->password,
+            'host' => System::$SETTINGS->db->host,
+            'driver' => System::$SETTINGS->db->driver,
+        );
+        try {
+            System::$DB = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
+        } catch (DBALException $e) {
 
+        }
+    }
 }

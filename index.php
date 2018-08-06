@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__.'/core/System.php';
-$SYSTEM = new \core\System();
 require_once "vendor/autoload.php";
-$SYSTEM->autoloader();
-
+\core\System::START();
 if(isset($_GET['controller']))
 {
     $controller = $_GET['controller'];
