@@ -90,7 +90,7 @@ class Imagegenerator
                     unset($dir_path[count($dir_path) - 1]);
                     $dir_path = implode('/', $dir_path);
                     if (!file_exists($dir_path)) {
-                        mkdir($dir_path, 777, true);
+                        mkdir($dir_path, 0777, true);
                     }
 
                     $fimg = 'image' . $ctypef;
