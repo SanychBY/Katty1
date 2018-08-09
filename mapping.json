@@ -1,6 +1,8 @@
 {
   "controllers": {
     "castom/Form": "castom\\controllers\\FormController",
-    "Image": "controllers\\ImageController"
+    "Image": "controllers\\ImageController",
+    "InputForm": "castom\\controllers\\InputFormController",
+    "RestApi":"castom\\controllers\\RestApiController"
   }
 }

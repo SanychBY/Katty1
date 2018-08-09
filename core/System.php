@@ -4,12 +4,18 @@ namespace core;
 
 use Doctrine\DBAL\DBALException;
 use Exception;
+use mysqli;
 
 
 class System
 {
     public static $SETTINGS = null;
     public static $GENERAL_JS = [];
+
+    /**
+     * @var null
+     * @param mysqli
+     */
     public static $DB = null;
 
     public static function START(){
@@ -109,19 +115,16 @@ class System
             rmdir($dir);
         }
     }
-    public static function connect_to_db(){
-        $config = new \Doctrine\DBAL\Configuration();
-        $connectionParams = array(
-            'dbname' => System::$SETTINGS->db->name,
-            'user' => System::$SETTINGS->db->user,
-            'password' => System::$SETTINGS->db->password,
-            'host' => System::$SETTINGS->db->host,
-            'driver' => System::$SETTINGS->db->driver,
-        );
-        try {
-            System::$DB = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
-        } catch (DBALException $e) {
 
+    public static function connect_to_db(){
+        System::$DB = new mysqli(
+            System::$SETTINGS->db->host,
+            System::$SETTINGS->db->user,
+            System::$SETTINGS->db->password,
+            System::$SETTINGS->db->name);
+        // Check for errors
+        if(mysqli_connect_errno()){
+            echo mysqli_connect_error();
         }
     }
 }

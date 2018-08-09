@@ -10,6 +10,7 @@
     "user":"root",
     "password":"",
     "name":"katty1",
-    "driver": "pdo_mysql"
+    "driver": "pdo_mysql",
+    "sol": "ykl_"
   }
 }

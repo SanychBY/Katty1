@@ -1,16 +1,16 @@
 <?php
 
-namespace controllers;
+namespace castom\controllers;
+
+
 use castom\themes\tools\blocks\MainPage\LoginForm;
-use castom\themes\tools\blocks\MainPage\PromoBlock1;
-use castom\themes\tools\blocks\MainPage\PromoBlock2;
 use castom\themes\tools\MKHeader;
 use castom\themes\tools\MKLogo;
+use controllers\Controller;
 use themes\pages\Main;
 
-class MainController extends Controller
+class InputFormController extends Controller
 {
-
     public function render()
     {
         parent::render();
@@ -20,10 +20,6 @@ class MainController extends Controller
         $header = new MKHeader();
         $header->setLogo(new MKLogo());
         $mainPage->header[] = $header;
-        $header->attr('class', 'navbar navbar-default');
-        $block1 = new PromoBlock1();
-        $mainPage->content[] = $block1;
-        $mainPage->content[] = new PromoBlock2();
         $mainPage->content[] = new LoginForm();
         $mainPage->render();
     }

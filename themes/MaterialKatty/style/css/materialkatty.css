@@ -12,11 +12,20 @@ body{
 #castom_themes_tools_blocks_MainPage_block1{
     height: 500px;
     width: 100%;
+    position: relative;
+}
+
+#castom_themes_tools_blocks_MainPage_block1:after{
+    content: '';
     background: url(/static/block_covers/cover_mainpage_block1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
 }
 
 #container_logo_for_text_logo_block1_mainpage{

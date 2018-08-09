@@ -8,6 +8,5 @@ class PromoBlock2 extends Element
     {
         parent::__construct();
         $this->viewElement = 'castom/themes/toolsViews/blocks/MainPage/PromoBlock2';
-
     }
 }

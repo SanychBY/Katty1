@@ -37,6 +37,7 @@ class Element implements \JsonSerializable
     {
         $this->name = get_class($this);
         $this->attributes['kclass'] = $this->name;
+        $this->viewElement = 'theme/toolsView/Element';
         $this->loadElementJson();
     }
 

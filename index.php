@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__.'/core/System.php';
-require_once "vendor/autoload.php";
 \core\System::START();
 if(isset($_GET['controller']))
 {

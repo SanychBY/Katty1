@@ -48,6 +48,7 @@ class MKHeader extends \core\Element
     {
         parent::__construct();
         $this->viewElement = 'castom/themes/toolsViews/MKHeader';
+        $this->attr('class', 'navbar navbar-default');
     }
 
     /**
